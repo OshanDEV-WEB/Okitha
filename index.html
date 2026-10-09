@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F6F7FB">
+<title>Okitha Catering & Sounds | Passara</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235B5BF0'/%3E%3Cstop offset='.55' stop-color='%23A855F7'/%3E%3Cstop offset='1' stop-color='%23FF7A59'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='13' fill='none' stroke='white' stroke-width='7'/%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+tailwind.config={theme:{extend:{fontFamily:{sans:['Plus Jakarta Sans','Noto Sans Sinhala','sans-serif']},colors:{ink:'#12142B',brand:'#5B5BF0'}}}}
+</script>
+<style>
+:root{--ink:#12142B;--muted:#6B7088;--line:#E8EAF3;--bg:#F6F7FB;--brand:#5B5BF0;--grad:linear-gradient(120deg,#5B5BF0 0%,#A855F7 55%,#FF7A59 100%)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans','Noto Sans Sinhala',sans-serif;-webkit-tap-highlight-color:transparent}
+.grad{background:var(--grad)}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 1px 2px rgba(18,20,43,.04),0 12px 32px -16px rgba(91,91,240,.18)}
+.glass{background:rgba(255,255,255,.78);backdrop-filter:blur(18px) saturate(180%);-webkit-backdrop-filter:blur(18px) saturate(180%);border:1px solid rgba(255,255,255,.9)}
+.btn{background:var(--grad);color:#fff;font-weight:700;border-radius:999px;box-shadow:0 10px 24px -10px rgba(168,85,247,.7);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.97)}
+.chip{border:1px solid var(--line);background:#fff;color:var(--muted);transition:all .2s}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+:focus-visible{outline:3px solid #A5A5FF;outline-offset:2px}
+/* Loader: gradient only */
+#preloader{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s}
+.orb{width:84px;height:84px;border-radius:50%;background:conic-gradient(from 0deg,#5B5BF0,#A855F7,#FF7A59,#FFC371,#5B5BF0);animation:spin 1.4s linear infinite;-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 9px),#000 calc(100% - 8px));mask:radial-gradient(farthest-side,transparent calc(100% - 9px),#000 calc(100% - 8px))}
+.glow{position:absolute;width:260px;height:260px;border-radius:50%;background:var(--grad);filter:blur(80px);opacity:.28;animation:pulse 2.4s ease-in-out infinite}
+.bar{width:140px;height:4px;border-radius:9px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;width:40%;background:var(--grad);border-radius:9px;animation:slide 1.2s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{transform:scale(1.2);opacity:.4}}@keyframes slide{0%{margin-left:-40%}100%{margin-left:100%}}
+/* Hero mesh */
+.mesh{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.mesh b{position:absolute;border-radius:50%;filter:blur(70px);opacity:.45}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marquee{display:flex;width:max-content;animation:scroll 28s linear infinite}.marquee:hover{animation-play-state:paused}
+.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{scrollbar-width:none}
+.snap{scroll-snap-type:x mandatory}.snap>*{scroll-snap-align:start}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body class="pb-32">
+
+<!-- Loader (gradient only, no logo) -->
+<div id="preloader">
+  <div class="glow"></div>
+  <div class="orb relative"></div>
+  <p class="relative mt-7 text-lg font-extrabold tracking-tight">Okitha Catering & Sounds</p>
+  <div class="bar relative mt-4"><i></i></div>
+</div>
+
+<!-- Header -->
+<header class="sticky top-0 z-40 px-3 pt-3">
+  <div class="glass max-w-6xl mx-auto rounded-full pl-2 pr-2 py-2 flex items-center justify-between shadow-[0_8px_30px_-12px_rgba(18,20,43,.18)]">
+    <a href="#top" class="flex items-center gap-2.5">
+      <div class="w-10 h-10 rounded-full grad p-[2px] shrink-0">
+        <div class="w-full h-full rounded-full bg-white overflow-hidden flex items-center justify-center">
+          <img src="logo.jpg" alt="Okitha logo" class="w-full h-full object-cover" onerror="this.remove();this.parentElement.innerHTML='<span class=\'grad-text font-extrabold\'>O</span>'">
+        </div>
+      </div>
+      <div class="leading-tight">
+        <p class="font-extrabold text-sm">Okitha Events</p>
+        <p class="text-[11px] text-[var(--muted)] hidden sm:block">Catering & Sounds · Passara</p>
+      </div>
+    </a>
+    <div class="flex items-center gap-2">
+      <a href="tel:0727777272" aria-label="Call us" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-brand"><i class="fa-solid fa-phone text-sm"></i></a>
+      <button onclick="toggleCartModal()" class="btn px-4 h-10 text-xs flex items-center gap-2">
+        <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Booking</span>
+        <span id="cart-badge" class="hidden bg-white text-brand text-[10px] font-extrabold min-w-[18px] h-[18px] px-1 rounded-full items-center justify-center">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="max-w-6xl mx-auto px-4 mt-5 space-y-14">
+
+  <!-- Hero -->
+  <section class="card relative overflow-hidden px-6 py-10 sm:px-12 sm:py-16">
+    <div class="mesh">
+      <b style="width:340px;height:340px;background:#C7C2FF;top:-120px;right:-60px"></b>
+      <b style="width:280px;height:280px;background:#FFD2C2;bottom:-120px;right:22%"></b>
+      <b style="width:240px;height:240px;background:#D8F0FF;top:30%;left:-100px"></b>
+    </div>
+    <div class="relative grid lg:grid-cols-[1.25fr_1fr] gap-10 items-center">
+      <div>
+        <p class="inline-flex items-center gap-2 text-xs font-semibold bg-white border border-[var(--line)] rounded-full pl-2 pr-3 py-1.5">
+          <span class="w-5 h-5 rounded-full grad flex items-center justify-center text-white text-[9px]"><i class="fa-solid fa-star"></i></span> පස්සර විශ්වාසනීයම සේවාව
+        </p>
+        <h1 class="mt-5 text-[2rem] sm:text-5xl font-extrabold leading-[1.25] tracking-tight">ඔබේ උත්සව සිහිනය <span class="grad-text">සැබෑ කිරීමට</span> අපි සූදානම්</h1>
+        <p class="mt-4 text-[15px] leading-relaxed text-[var(--muted)] max-w-xl">Sounds, Catering, DJ, Canopies, Lighting — උත්සවයේ සියලු කටයුතු මුල සිට අග දක්වා වගකීමෙන් සහ ගුණාත්මකව නිම කර දෙනවා.</p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="#builder" class="btn px-6 py-3.5 text-sm inline-flex items-center gap-2">Booking එක සකසන්න <i class="fa-solid fa-arrow-right text-xs"></i></a>
+          <a href="https://wa.me/94727777272" target="_blank" rel="noopener" class="px-6 py-3.5 text-sm font-bold rounded-full bg-white border border-[var(--line)] inline-flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-500 text-lg"></i> WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- How it works (a real sequence) -->
+      <ol class="glass rounded-3xl p-5 space-y-4 shadow-[0_20px_50px_-24px_rgba(91,91,240,.45)]">
+        <li class="flex gap-3.5 items-start"><span class="w-8 h-8 rounded-full grad text-white text-xs font-extrabold flex items-center justify-center shrink-0">1</span><div><p class="font-bold text-sm">සේවා තෝරන්න</p><p class="text-xs text-[var(--muted)]">Sounds, Stage, Chairs, Tables ආදිය</p></div></li>
+        <li class="flex gap-3.5 items-start"><span class="w-8 h-8 rounded-full grad text-white text-xs font-extrabold flex items-center justify-center shrink-0">2</span><div><p class="font-bold text-sm">විස්තර ඇතුළත් කරන්න</p><p class="text-xs text-[var(--muted)]">නම, දිනය සහ ස්ථානය</p></div></li>
+        <li class="flex gap-3.5 items-start"><span class="w-8 h-8 rounded-full grad text-white text-xs font-extrabold flex items-center justify-center shrink-0">3</span><div><p class="font-bold text-sm">WhatsApp එකෙන් යවන්න</p><p class="text-xs text-[var(--muted)]">PDF සාරාංශය සමඟ අපට ලැබේ</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section>
+    <p class="text-sm font-bold mb-3 px-1">අපව විශ්වාස කරන අය</p>
+    <div class="card rounded-2xl py-4 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+      <div class="marquee items-center gap-4" id="marquee"></div>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section id="about" class="scroll-mt-24 card relative overflow-hidden p-6 sm:p-10">
+    <div class="mesh"><b style="width:260px;height:260px;background:#E3DEFF;top:-100px;left:-80px"></b><b style="width:220px;height:220px;background:#FFE0D4;bottom:-90px;right:30%"></b></div>
+    <div class="relative grid md:grid-cols-[1.4fr_1fr] gap-8 md:gap-12 items-center">
+      <div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">අපි ගැන <span class="grad-text">About Us</span></h2>
+        <p class="mt-4 text-[15px] leading-[1.9] text-[var(--muted)]">Okitha Catering & Sounds කියන්නේ පස්සර ප්‍රදේශයේ උත්සව සඳහා සම්පූර්ණ සේවාවක් ලබාදෙන ආයතනයක්. විවාහ මංගල්‍ය, උපන්දින, පාටි සහ ගෙවල් උත්සව වගේ ඕනෑම අවස්ථාවක් ඔබ සිතූ ආකාරයටම සංවිධානය කරලා දෙන එක අපේ ඉලක්කය.</p>
+        <p class="mt-3 text-[15px] leading-[1.9] text-[var(--muted)]">Sound system, DJ, Stage, Decor, Lighting, Canopies වගේම Chairs, Tables, Plates සහ Buffet sets ඔක්කොම එකම තැනකින්. ඒ නිසා ඔබට වෙනම වෙනම තැන් හොයන්න ඕන නෑ. වෙලාවට ඇවිත්, පිළිවෙලට සකසලා, උත්සවය ඉවර වෙනකම් අපි ඉන්නවා.</p>
+
+        <ul class="mt-6 grid sm:grid-cols-2 gap-3">
+          <li class="flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#EEEDFF] text-brand flex items-center justify-center shrink-0"><i class="fa-solid fa-clock"></i></span><div><p class="text-sm font-bold">වෙලාවට සේවාව</p><p class="text-xs text-[var(--muted)] mt-0.5">කියපු වෙලාවටම සූදානම්</p></div></li>
+          <li class="flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#FFEAF3] text-[#E0488A] flex items-center justify-center shrink-0"><i class="fa-solid fa-layer-group"></i></span><div><p class="text-sm font-bold">සියල්ල එකම තැනින්</p><p class="text-xs text-[var(--muted)] mt-0.5">Sounds සිට Catering දක්වා</p></div></li>
+          <li class="flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#E6F7FF] text-[#1B9AD6] flex items-center justify-center shrink-0"><i class="fa-solid fa-sliders"></i></span><div><p class="text-sm font-bold">ඔබට ඕන විදිහට</p><p class="text-xs text-[var(--muted)] mt-0.5">අවශ්‍ය දේවල් පමණක් තෝරන්න</p></div></li>
+          <li class="flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#FFF1E6] text-[#F07A2A] flex items-center justify-center shrink-0"><i class="fa-solid fa-hand-holding-heart"></i></span><div><p class="text-sm font-bold">විශ්වාසනීය සේවාව</p><p class="text-xs text-[var(--muted)] mt-0.5">පස්සර පළාතේ ජනතාවගේ තේරීම</p></div></li>
+        </ul>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="#builder" class="btn px-6 py-3.5 text-sm inline-flex items-center gap-2">සේවා තෝරන්න <i class="fa-solid fa-arrow-right text-xs"></i></a>
+          <a href="tel:0727777272" class="px-6 py-3.5 text-sm font-bold rounded-full bg-white border border-[var(--line)] inline-flex items-center gap-2"><i class="fa-solid fa-phone text-brand text-xs"></i> 072 777 7272</a>
+        </div>
+      </div>
+
+      <!-- Looping reel: no controls, no player UI -->
+      <div class="relative mx-auto w-full max-w-[280px]">
+        <div class="absolute -inset-3 rounded-[40px] grad opacity-25 blur-2xl"></div>
+        <div class="relative aspect-[9/16] rounded-[32px] overflow-hidden bg-ink border-4 border-white shadow-[0_28px_60px_-20px_rgba(91,91,240,.55)] pointer-events-none select-none">
+          <video id="about-reel" class="w-full h-full object-cover" autoplay muted loop playsinline disablepictureinpicture disableremoteplayback preload="auto" tabindex="-1" aria-hidden="true">
+            <source src="reel.mp4" type="video/mp4">
+            <source src="reel1.mp4" type="video/mp4">
+            <source src="1.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Builder -->
+  <section id="builder" class="scroll-mt-24">
+    <div class="flex items-end justify-between gap-3 mb-4 px-1">
+      <div><h2 class="text-2xl font-extrabold tracking-tight">Event Customizer</h2><p class="text-sm text-[var(--muted)] mt-1">ඔබේ උත්සවයට අවශ්‍ය දේවල් සහ ප්‍රමාණය තෝරන්න</p></div>
+    </div>
+    <div class="flex gap-2 overflow-x-auto no-scrollbar pb-3" id="category-tabs">
+      <button data-cat="all" class="chip on text-xs font-semibold px-4 py-2.5 rounded-full whitespace-nowrap">සියල්ල</button>
+      <button data-cat="sounds" class="chip text-xs font-semibold px-4 py-2.5 rounded-full whitespace-nowrap">Sounds & DJ</button>
+      <button data-cat="decor" class="chip text-xs font-semibold px-4 py-2.5 rounded-full whitespace-nowrap">Stage & Decor</button>
+      <button data-cat="catering" class="chip text-xs font-semibold px-4 py-2.5 rounded-full whitespace-nowrap">Chairs, Tables & Plates</button>
+      <button data-cat="lighting" class="chip text-xs font-semibold px-4 py-2.5 rounded-full whitespace-nowrap">Lighting & Canopies</button>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="items-grid"></div>
+  </section>
+
+  <!-- Reels -->
+  <section>
+    <div class="flex items-end justify-between mb-4 px-1">
+      <div><h2 class="text-2xl font-extrabold tracking-tight">Event Reels</h2><p class="text-sm text-[var(--muted)] mt-1">අප කළ උත්සවවල දර්ශන</p></div>
+      <div class="flex gap-2">
+        <button aria-label="Previous" onclick="scrollReels(-260)" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center active:scale-95"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+        <button aria-label="Next" onclick="scrollReels(260)" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center active:scale-95"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+      </div>
+    </div>
+    <div id="reels-container" class="snap no-scrollbar flex gap-4 overflow-x-auto pb-2" style="scroll-behavior:smooth"></div>
+  </section>
+
+  <!-- Feedback -->
+  <section>
+    <div class="mb-4 px-1"><h2 class="text-2xl font-extrabold tracking-tight">පාරිභෝගික අදහස්</h2><p class="text-sm text-[var(--muted)] mt-1">සේවාව ලැබූ අය කියන කතාව</p></div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <figure class="card p-5"><div class="text-amber-400 text-xs mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><blockquote class="text-sm leading-relaxed">පස්සර පැත්තේ තියෙන හොදම Catering සහ Sound සේවාව. වෙලාවට වැඩේ කරලා දුන්නා.</blockquote><figcaption class="mt-4 text-xs font-bold">කසුන් පෙරේරා <span class="font-medium text-[var(--muted)]">· පස්සර</span></figcaption></figure>
+      <figure class="card p-5"><div class="text-amber-400 text-xs mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><blockquote class="text-sm leading-relaxed">Sound Quality එක සහ Lighting එක නියමෙටම තිබුනා. Stage Decor එකත් ගොඩක් ලස්සනයි.</blockquote><figcaption class="mt-4 text-xs font-bold">නිමේෂ් මධුශංක <span class="font-medium text-[var(--muted)]">· බදුල්ල</span></figcaption></figure>
+      <figure class="card p-5"><div class="text-amber-400 text-xs mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><blockquote class="text-sm leading-relaxed">Chairs, Tables, Canopies ඔක්කොම පිරිසිදුවට සහ පිළිවෙලට ලෑස්ති කරලා දුන්නා. Very Recommended!</blockquote><figcaption class="mt-4 text-xs font-bold">තරින්දු රත්නායක <span class="font-medium text-[var(--muted)]">· මඩකලපුව පාර</span></figcaption></figure>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="mt-16 border-t border-[var(--line)] pt-8 pb-24 px-4 text-center space-y-4">
+  <div class="flex justify-center gap-3">
+    <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] hover:text-brand"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] hover:text-pink-500"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://wa.me/94727777272" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] hover:text-red-500"><i class="fa-brands fa-youtube"></i></a>
+  </div>
+  <div class="text-xs text-[var(--muted)] flex justify-center gap-5"><a href="#" class="hover:underline">Quick Access</a><a href="#" class="hover:underline">Privacy Policy</a><a href="#" class="hover:underline">Terms of Service</a></div>
+  <p class="text-xs text-[var(--muted)]">© 2026 Okitha Catering & Sounds. Made with <i class="fa-solid fa-heart text-red-500"></i> by <b class="text-ink">Oshan Dissanayaka</b></p>
+</footer>
+
+<!-- Floating cart bar -->
+<div id="floating-cart-bar" class="fixed bottom-4 left-4 right-4 z-30 max-w-lg mx-auto hidden">
+  <div class="glass rounded-full p-2 pl-5 flex items-center justify-between shadow-[0_16px_40px_-12px_rgba(18,20,43,.3)]">
+    <div><p class="text-[11px] text-[var(--muted)] font-medium">තෝරාගත් සේවා</p><p class="text-sm font-bold" id="cart-summary-text">0</p></div>
+    <button onclick="toggleCartModal()" class="btn px-5 py-3 text-xs">Booking බලන්න</button>
+  </div>
+</div>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/94727777272" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" id="wa-fab" class="fixed right-4 bottom-4 z-20 w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_14px_30px_-8px_rgba(16,185,129,.7)] hover:scale-105 transition"><i class="fa-brands fa-whatsapp text-3xl"></i></a>
+
+<!-- Cart modal -->
+<div id="cart-modal" class="fixed inset-0 z-50 bg-ink/30 backdrop-blur-sm flex items-end sm:items-center justify-center hidden opacity-0 transition-opacity duration-300 sm:p-4">
+  <div id="cart-modal-content" class="bg-white w-full max-w-md rounded-t-[28px] sm:rounded-[28px] max-h-[92vh] flex flex-col overflow-hidden translate-y-10 transition-transform duration-300 shadow-2xl">
+    <div class="p-5 flex items-center justify-between border-b border-[var(--line)]">
+      <h3 class="font-extrabold">ඔබගේ Booking</h3>
+      <button onclick="toggleCartModal()" aria-label="Close" class="w-9 h-9 rounded-full bg-[var(--bg)] flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="p-5 overflow-y-auto space-y-5 flex-1">
+      <div id="cart-items-container" class="space-y-2"></div>
+      <div class="space-y-3">
+        <div><label for="cust-name" class="text-xs font-semibold block mb-1.5">නම *</label><input id="cust-name" placeholder="උදා: කසුන් පෙරේරා" class="w-full rounded-2xl border border-[var(--line)] bg-[var(--bg)] px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white"></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div><label for="cust-phone" class="text-xs font-semibold block mb-1.5">දුරකථන *</label><input id="cust-phone" type="tel" placeholder="07X XXXXXXX" class="w-full rounded-2xl border border-[var(--line)] bg-[var(--bg)] px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white"></div>
+          <div><label for="event-date" class="text-xs font-semibold block mb-1.5">උත්සව දිනය *</label><input id="event-date" type="date" class="w-full rounded-2xl border border-[var(--line)] bg-[var(--bg)] px-3 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white"></div>
+        </div>
+        <div><label for="event-location" class="text-xs font-semibold block mb-1.5">ස්ථානය</label><input id="event-location" placeholder="උදා: පස්සර, බදුල්ල" class="w-full rounded-2xl border border-[var(--line)] bg-[var(--bg)] px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white"></div>
+        <div><label for="event-notes" class="text-xs font-semibold block mb-1.5">අමතර සටහන්</label><textarea id="event-notes" rows="2" placeholder="විශේෂ අවශ්‍යතා..." class="w-full rounded-2xl border border-[var(--line)] bg-[var(--bg)] px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white"></textarea></div>
+      </div>
+    </div>
+    <div class="p-5 border-t border-[var(--line)]">
+      <button onclick="sendToWhatsApp()" class="w-full py-4 rounded-full bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-[0_12px_28px_-10px_rgba(16,185,129,.7)] active:scale-[.98] transition"><i class="fa-brands fa-whatsapp text-lg"></i> PDF සමඟ WhatsApp යවන්න</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Loader
+window.addEventListener('load',()=>setTimeout(()=>{const p=document.getElementById('preloader');p.style.opacity=0;setTimeout(()=>p.remove(),600)},900));
+
+// Partners marquee
+const partners=[['client1.jpg','Passara Club'],['client2.jpg','Uva Events'],['client3.jpg','Badulla Party'],['client4.jpg','Royal Catering']];
+document.getElementById('marquee').innerHTML=[...partners,...partners,...partners,...partners].map(([src,n])=>`<div class="h-12 min-w-[140px] mx-2 px-5 rounded-2xl bg-[var(--bg)] border border-[var(--line)] flex items-center justify-center"><img src="${src}" alt="${n}" class="h-7 max-w-[100px] object-contain" onerror="this.outerHTML='<span class=\\'text-xs font-bold text-[var(--muted)]\\'>${n}</span>'"></div>`).join('');
+
+// Reels
+const reels=[['reel1.mp4','Sound Setup','fa-compact-disc'],['reel2.mp4','Catering Live','fa-utensils'],['reel3.mp4','DJ Night','fa-bolt'],['reel4.mp4','Stage & Canopies','fa-campground']];
+document.getElementById('reels-container').innerHTML=reels.map(([f,t,i],n)=>`<div class="relative shrink-0 w-[220px] aspect-[9/16] rounded-3xl overflow-hidden bg-ink border border-[var(--line)] shadow-[0_16px_36px_-16px_rgba(18,20,43,.5)]"><video class="w-full h-full object-cover" controls playsinline preload="metadata"><source src="${f}" type="video/mp4"><source src="1.mp4" type="video/mp4"></video><span class="absolute top-3 left-3 glass text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5"><i class="fa-solid ${i} text-brand"></i>${t}</span></div>`).join('');
+function scrollReels(a){document.getElementById('reels-container').scrollBy({left:a,behavior:'smooth'})}
+
+// Catalog
+const catalogItems=[
+{id:1,category:'sounds',name:'Full Sound System',icon:'fa-music',desc:'උසස්ම ශබ්ද පරිපාලන පද්ධතිය'},
+{id:2,category:'sounds',name:'DJ Sound Setup',icon:'fa-sliders',desc:'පාටිය සුපිරියටම නටන්න DJ සේවාව'},
+{id:3,category:'decor',name:'Event Stage',icon:'fa-dungeon',desc:'නවීන මාදිලියේ ස්ටේජ් සැකසුම'},
+{id:4,category:'decor',name:'Traditional & Modern Decor',icon:'fa-fan',desc:'කොඩි කනු සහ නවීන සැරසිලි'},
+{id:5,category:'lighting',name:'Canopies (කැනපි)',icon:'fa-campground',desc:'උත්සවයට ගැලපෙන කැනපි සේවා'},
+{id:6,category:'lighting',name:'Lighting System',icon:'fa-lightbulb',desc:'විචිත්‍රවත් ආලෝකකරණය'},
+{id:7,category:'catering',name:'Plastic Chairs',icon:'fa-chair',desc:'ප්ලාස්ටික් පුටු (Chairs)'},
+{id:8,category:'catering',name:'Banquet Tables',icon:'fa-table',desc:'මේස (Tables)'},
+{id:9,category:'catering',name:'Plates & Cutlery Sets',icon:'fa-utensils',desc:'ප්ලේට් සහ උපකරණ කට්ටල'},
+{id:10,category:'catering',name:'Buffet Warmers',icon:'fa-bowl-food',desc:'බුෆේ සෙට් (Buffet Sets)'}];
+const tints={sounds:'#EEEDFF|#5B5BF0',decor:'#FFEAF3|#E0488A',catering:'#FFF1E6|#F07A2A',lighting:'#E6F7FF|#1B9AD6'};
+let cart={},activeCat='all';
+
+function renderItems(){
+  const list=activeCat==='all'?catalogItems:catalogItems.filter(i=>i.category===activeCat);
+  document.getElementById('items-grid').innerHTML=list.map(it=>{
+    const q=cart[it.id]?cart[it.id].qty:0,[bg,fg]=tints[it.category].split('|');
+    return `<div class="card p-5 flex flex-col justify-between ${q?'ring-2 ring-brand/40':''}">
+      <div class="flex gap-4"><div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style="background:${bg};color:${fg}"><i class="fa-solid ${it.icon}"></i></div>
+      <div><h4 class="font-bold text-[15px] leading-snug">${it.name}</h4><p class="text-xs text-[var(--muted)] mt-1 leading-relaxed">${it.desc}</p></div></div>
+      <div class="mt-5">${q?`<div class="flex items-center justify-between rounded-full bg-[var(--bg)] p-1"><button aria-label="Decrease" onclick="updateQty(${it.id},-1)" class="w-9 h-9 rounded-full bg-white border border-[var(--line)] font-bold active:scale-95">−</button><span class="text-sm font-extrabold">${q}</span><button aria-label="Increase" onclick="updateQty(${it.id},1)" class="w-9 h-9 rounded-full grad text-white font-bold active:scale-95">+</button></div>`
+      :`<button onclick="updateQty(${it.id},1)" class="w-full py-2.5 rounded-full border border-[var(--line)] bg-white text-sm font-bold hover:border-brand hover:text-brand transition flex items-center justify-center gap-2"><i class="fa-solid fa-plus text-[10px]"></i>තෝරන්න</button>`}</div></div>`}).join('');
+}
+document.getElementById('category-tabs').addEventListener('click',e=>{
+  const b=e.target.closest('[data-cat]');if(!b)return;
+  activeCat=b.dataset.cat;
+  document.querySelectorAll('#category-tabs .chip').forEach(c=>c.classList.toggle('on',c===b));
+  renderItems();
+});
+function updateQty(id,d){
+  const item=catalogItems.find(i=>i.id===id);
+  if(!cart[id])cart[id]={item,qty:0};
+  cart[id].qty+=d;if(cart[id].qty<=0)delete cart[id];
+  updateUI();
+}
+function updateUI(){
+  renderItems();
+  const total=Object.values(cart).reduce((s,i)=>s+i.qty,0);
+  const badge=document.getElementById('cart-badge');
+  badge.textContent=total;badge.classList.toggle('hidden',!total);badge.classList.toggle('inline-flex',!!total);
+  document.getElementById('floating-cart-bar').classList.toggle('hidden',!total);
+  document.getElementById('wa-fab').classList.toggle('hidden',!!total);
+  document.getElementById('cart-summary-text').textContent=`${Object.keys(cart).length} සේවා · ${total} ඒකක`;
+  renderCartModalItems();
+}
+function renderCartModalItems(){
+  const c=document.getElementById('cart-items-container'),keys=Object.keys(cart);
+  if(!keys.length){c.innerHTML='<p class="text-sm text-[var(--muted)] text-center py-4">තවමත් කිසිවක් තෝරා නැත.</p>';return}
+  c.innerHTML=keys.map(k=>{const e=cart[k];return `<div class="flex items-center justify-between rounded-2xl bg-[var(--bg)] p-3"><div class="pr-2"><p class="text-sm font-bold">${e.item.name}</p><p class="text-[11px] text-[var(--muted)]">${e.item.desc}</p></div><div class="flex items-center gap-2 shrink-0"><button aria-label="Decrease" onclick="updateQty(${e.item.id},-1)" class="w-8 h-8 rounded-full bg-white border border-[var(--line)] font-bold">−</button><span class="text-sm font-extrabold w-4 text-center">${e.qty}</span><button aria-label="Increase" onclick="updateQty(${e.item.id},1)" class="w-8 h-8 rounded-full grad text-white font-bold">+</button></div></div>`}).join('');
+}
+function toggleCartModal(){
+  const m=document.getElementById('cart-modal'),c=document.getElementById('cart-modal-content');
+  if(m.classList.contains('hidden')){m.classList.remove('hidden');setTimeout(()=>{m.classList.remove('opacity-0');c.classList.remove('translate-y-10')},10)}
+  else{m.classList.add('opacity-0');c.classList.add('translate-y-10');setTimeout(()=>m.classList.add('hidden'),300)}
+}
+function sendToWhatsApp(){
+  const name=document.getElementById('cust-name').value.trim(),phone=document.getElementById('cust-phone').value.trim(),date=document.getElementById('event-date').value,location=document.getElementById('event-location').value.trim(),notes=document.getElementById('event-notes').value.trim();
+  if(!name||!phone||!date){alert('කරුණාකර ඔබේ නම, දුරකථන අංකය සහ උත්සව දිනය ඇතුළත් කරන්න.');return}
+  if(!Object.keys(cart).length){alert('කරුණාකර අවම වශයෙන් එක් සේවාවක් හෝ තෝරන්න.');return}
+  const {jsPDF}=window.jspdf,doc=new jsPDF();
+  doc.setFontSize(18);doc.text("Okitha Catering & Sounds - Passara",14,20);
+  doc.setFontSize(12);doc.text("Event Booking Request Summary",14,28);doc.text(`Date: ${new Date().toLocaleDateString()}`,14,34);
+  doc.line(14,38,196,38);doc.setFontSize(10);
+  doc.text(`Customer Name: ${name}`,14,46);doc.text(`Phone Number: ${phone}`,14,52);doc.text(`Event Date: ${date}`,14,58);doc.text(`Location: ${location||'N/A'}`,14,64);
+  if(notes)doc.text(`Notes: ${notes}`,14,70);
+  doc.line(14,76,196,76);doc.text("Selected Services & Equipment:",14,84);
+  let y=92;Object.values(cart).forEach((e,i)=>{doc.text(`${i+1}. ${e.item.name} - Quantity: ${e.qty}`,20,y);y+=8});
+  doc.line(14,y+4,196,y+4);doc.setFontSize(9);doc.text("Generated via Okitha Web App | Developer: Oshan Dissanayaka",14,y+12);
+  doc.save(`Okitha_Booking_${name.replace(/\s+/g,'_')}.pdf`);
+  let items='';Object.values(cart).forEach((e,i)=>{items+=`%0A  ${i+1}. *${e.item.name}* (Qty: ${e.qty})`});
+  const msg=`*-- OKITHA EVENTS BOOKING REQUEST --*%0A%0A*නම:* ${name}%0A*දුරකථන:* ${phone}%0A*උත්සව දිනය:* ${date}%0A*ස්ථානය:* ${location||'සඳහන් කර නැත'}%0A*සටහන්:* ${notes||'නැත'}%0A%0A*තෝරාගත් සේවාවන්:*${items}%0A%0A_PDF සාරාංශ පත්‍රිකාව Download විය. කරුණාකර එයද මෙහි Attach කර යවන්න._`;
+  window.open(`https://wa.me/94727777272?text=${msg}`,'_blank');
+}
+renderItems();
+
+// About reel: silent loop, play only while visible
+const aboutReel=document.getElementById('about-reel');
+if(aboutReel){
+  aboutReel.muted=true;
+  new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?aboutReel.play().catch(()=>{}):aboutReel.pause()),{threshold:.25}).observe(aboutReel);
+}
+</script>
+</body>
+</html>
