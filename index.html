@@ -6,12 +6,14 @@
 <meta name="theme-color" content="#F6F7FB">
 <title>Okitha Catering & Sounds | Passara</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235B5BF0'/%3E%3Cstop offset='.55' stop-color='%23A855F7'/%3E%3Cstop offset='1' stop-color='%23FF7A59'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='13' fill='none' stroke='white' stroke-width='7'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add("js")</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 <script>
 tailwind.config={theme:{extend:{fontFamily:{sans:['Plus Jakarta Sans','Noto Sans Sinhala','sans-serif']},colors:{ink:'#12142B',brand:'#5B5BF0'}}}}
 </script>
@@ -37,6 +39,37 @@ body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans','Noto
 /* Hero mesh */
 .mesh{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .mesh b{position:absolute;border-radius:50%;filter:blur(70px);opacity:.45}
+.kenburns{animation:kb 12s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1) translate(0,0)}to{transform:scale(1.14) translate(-2%,-2%)}}
+.post-float{animation:fl 6s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px) rotate(.4deg)}}
+.badge{animation:bd 4s ease-in-out infinite}.b2{animation-delay:-1.3s}.b3{animation-delay:-2.6s}
+@keyframes bd{50%{transform:translateY(-6px)}}
+#like-btn.liked i{font-weight:900;color:#F43F5E;animation:pop .35s}
+@keyframes pop{50%{transform:scale(1.4)}}
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,40px);opacity:0;z-index:70;transition:all .4s;pointer-events:none}
+#toast.show{transform:translate(-50%,0);opacity:1}
+.js .rv{opacity:0;transform:translateY(26px) scale(.985);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms)}
+.js .rv.in{opacity:1;transform:none}
+header.hd{animation:hd .8s cubic-bezier(.2,.8,.2,1) both .9s}
+@keyframes hd{from{opacity:0;transform:translateY(-28px)}to{opacity:1;transform:none}}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .7s}
+.btn:hover::after{left:130%}
+.grad-text{background-size:220% 100%;animation:sh 7s ease-in-out infinite alternate}
+@keyframes sh{to{background-position:100% 0}}
+.mesh b{animation:dr 14s ease-in-out infinite alternate}.mesh b:nth-child(2){animation-delay:-5s;animation-duration:17s}.mesh b:nth-child(3){animation-delay:-9s}
+@keyframes dr{to{transform:translate(36px,-26px) scale(1.12)}}
+.lift{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.lift:hover{transform:translateY(-6px);box-shadow:0 2px 4px rgba(18,20,43,.04),0 26px 44px -20px rgba(91,91,240,.35)}
+.ic{transition:transform .4s cubic-bezier(.3,1.6,.5,1)}.lift:hover .ic{transform:rotate(-10deg) scale(1.12)}
+.pop{animation:pp .55s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:calc(var(--i,0)*55ms)}
+@keyframes pp{from{opacity:0;transform:translateY(22px) scale(.94)}to{opacity:1;transform:none}}
+.logo-float{animation:fl 5s ease-in-out infinite}
+#floating-cart-bar{animation:up .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+#cart-badge.bump{animation:bm .4s}
+@keyframes bm{50%{transform:scale(1.5)}}
 @keyframes scroll{to{transform:translateX(-50%)}}
 .marquee{display:flex;width:max-content;animation:scroll 28s linear infinite}.marquee:hover{animation-play-state:paused}
 .no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{scrollbar-width:none}
@@ -55,18 +88,13 @@ body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans','Noto
 </div>
 
 <!-- Header -->
-<header class="sticky top-0 z-40 px-3 pt-3">
+<header class="hd sticky top-0 z-40 px-3 pt-3">
   <div class="glass max-w-6xl mx-auto rounded-full pl-2 pr-2 py-2 flex items-center justify-between shadow-[0_8px_30px_-12px_rgba(18,20,43,.18)]">
-    <a href="#top" class="flex items-center gap-2.5">
-      <div class="w-10 h-10 rounded-full grad p-[2px] shrink-0">
-        <div class="w-full h-full rounded-full bg-white overflow-hidden flex items-center justify-center">
-          <img src="logo.jpg" alt="Okitha logo" class="w-full h-full object-cover" onerror="this.remove();this.parentElement.innerHTML='<span class=\'grad-text font-extrabold\'>O</span>'">
-        </div>
-      </div>
-      <div class="leading-tight">
-        <p class="font-extrabold text-sm">Okitha Events</p>
-        <p class="text-[11px] text-[var(--muted)] hidden sm:block">Catering & Sounds · Passara</p>
-      </div>
+    <a href="#top" class="flex items-center gap-2.5 min-w-0" aria-label="Okitha home">
+      <span class="h-10 max-w-[150px] sm:max-w-[190px] px-2 rounded-xl bg-white border border-[var(--line)] flex items-center justify-center shrink-0 overflow-hidden">
+        <img src="1.jpg" alt="Okitha logo" class="h-full w-auto max-w-full object-contain py-[3px]" onerror="var p=this.parentElement;p.innerHTML='<span class=\'grad-text font-extrabold text-lg px-1\'>Okitha</span>'">
+      </span>
+      <span class="leading-tight hidden md:block"><span class="block font-extrabold text-sm">Catering & Sounds</span><span class="block text-[11px] text-[var(--muted)]">Passara</span></span>
     </a>
     <div class="flex items-center gap-2">
       <a href="tel:0727777272" aria-label="Call us" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-brand"><i class="fa-solid fa-phone text-sm"></i></a>
@@ -89,14 +117,17 @@ body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans','Noto
     </div>
     <div class="relative grid lg:grid-cols-[1.25fr_1fr] gap-10 items-center">
       <div>
-        <p class="inline-flex items-center gap-2 text-xs font-semibold bg-white border border-[var(--line)] rounded-full pl-2 pr-3 py-1.5">
+        <div class="inline-flex items-center rounded-2xl bg-white border border-[var(--line)] px-4 py-2.5 shadow-[0_12px_30px_-16px_rgba(91,91,240,.45)] mb-5">
+          <img src="1.jpg" alt="Okitha Catering & Sounds logo" class="logo-float h-14 sm:h-16 w-auto max-w-[240px] object-contain" onerror="this.parentElement.remove()">
+        </div>
+        <p class="flex w-fit items-center gap-2 text-xs font-semibold bg-white border border-[var(--line)] rounded-full pl-2 pr-3 py-1.5">
           <span class="w-5 h-5 rounded-full grad flex items-center justify-center text-white text-[9px]"><i class="fa-solid fa-star"></i></span> පස්සර විශ්වාසනීයම සේවාව
         </p>
         <h1 class="mt-5 text-[2rem] sm:text-5xl font-extrabold leading-[1.25] tracking-tight">ඔබේ උත්සව සිහිනය <span class="grad-text">සැබෑ කිරීමට</span> අපි සූදානම්</h1>
         <p class="mt-4 text-[15px] leading-relaxed text-[var(--muted)] max-w-xl">Sounds, Catering, DJ, Canopies, Lighting — උත්සවයේ සියලු කටයුතු මුල සිට අග දක්වා වගකීමෙන් සහ ගුණාත්මකව නිම කර දෙනවා.</p>
         <div class="mt-7 flex flex-wrap gap-3">
           <a href="#builder" class="btn px-6 py-3.5 text-sm inline-flex items-center gap-2">Booking එක සකසන්න <i class="fa-solid fa-arrow-right text-xs"></i></a>
-          <a href="https://wa.me/94727777272" target="_blank" rel="noopener" class="px-6 py-3.5 text-sm font-bold rounded-full bg-white border border-[var(--line)] inline-flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-500 text-lg"></i> WhatsApp</a>
+          <a href="https://wa.me/94716087217" target="_blank" rel="noopener" class="px-6 py-3.5 text-sm font-bold rounded-full bg-white border border-[var(--line)] inline-flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-500 text-lg"></i> WhatsApp</a>
         </div>
       </div>
 
@@ -127,28 +158,41 @@ body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans','Noto
         <p class="mt-3 text-[15px] leading-[1.9] text-[var(--muted)]">Sound system, DJ, Stage, Decor, Lighting, Canopies වගේම Chairs, Tables, Plates සහ Buffet sets ඔක්කොම එකම තැනකින්. ඒ නිසා ඔබට වෙනම වෙනම තැන් හොයන්න ඕන නෑ. වෙලාවට ඇවිත්, පිළිවෙලට සකසලා, උත්සවය ඉවර වෙනකම් අපි ඉන්නවා.</p>
 
         <ul class="mt-6 grid sm:grid-cols-2 gap-3">
-          <li class="flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#EEEDFF] text-brand flex items-center justify-center shrink-0"><i class="fa-solid fa-clock"></i></span><div><p class="text-sm font-bold">වෙලාවට සේවාව</p><p class="text-xs text-[var(--muted)] mt-0.5">කියපු වෙලාවටම සූදානම්</p></div></li>
-          <li class="flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#FFEAF3] text-[#E0488A] flex items-center justify-center shrink-0"><i class="fa-solid fa-layer-group"></i></span><div><p class="text-sm font-bold">සියල්ල එකම තැනින්</p><p class="text-xs text-[var(--muted)] mt-0.5">Sounds සිට Catering දක්වා</p></div></li>
-          <li class="flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#E6F7FF] text-[#1B9AD6] flex items-center justify-center shrink-0"><i class="fa-solid fa-sliders"></i></span><div><p class="text-sm font-bold">ඔබට ඕන විදිහට</p><p class="text-xs text-[var(--muted)] mt-0.5">අවශ්‍ය දේවල් පමණක් තෝරන්න</p></div></li>
-          <li class="flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#FFF1E6] text-[#F07A2A] flex items-center justify-center shrink-0"><i class="fa-solid fa-hand-holding-heart"></i></span><div><p class="text-sm font-bold">විශ්වාසනීය සේවාව</p><p class="text-xs text-[var(--muted)] mt-0.5">පස්සර පළාතේ ජනතාවගේ තේරීම</p></div></li>
+          <li class="lift flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#EEEDFF] text-brand flex items-center justify-center shrink-0"><i class="fa-solid fa-clock"></i></span><div><p class="text-sm font-bold">වෙලාවට සේවාව</p><p class="text-xs text-[var(--muted)] mt-0.5">කියපු වෙලාවටම සූදානම්</p></div></li>
+          <li class="lift flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#FFEAF3] text-[#E0488A] flex items-center justify-center shrink-0"><i class="fa-solid fa-layer-group"></i></span><div><p class="text-sm font-bold">සියල්ල එකම තැනින්</p><p class="text-xs text-[var(--muted)] mt-0.5">Sounds සිට Catering දක්වා</p></div></li>
+          <li class="lift flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#E6F7FF] text-[#1B9AD6] flex items-center justify-center shrink-0"><i class="fa-solid fa-sliders"></i></span><div><p class="text-sm font-bold">ඔබට ඕන විදිහට</p><p class="text-xs text-[var(--muted)] mt-0.5">අවශ්‍ය දේවල් පමණක් තෝරන්න</p></div></li>
+          <li class="lift flex items-start gap-3 rounded-2xl bg-[var(--bg)] p-3.5"><span class="w-9 h-9 rounded-xl bg-[#FFF1E6] text-[#F07A2A] flex items-center justify-center shrink-0"><i class="fa-solid fa-hand-holding-heart"></i></span><div><p class="text-sm font-bold">විශ්වාසනීය සේවාව</p><p class="text-xs text-[var(--muted)] mt-0.5">පස්සර පළාතේ ජනතාවගේ තේරීම</p></div></li>
         </ul>
 
         <div class="mt-7 flex flex-wrap gap-3">
           <a href="#builder" class="btn px-6 py-3.5 text-sm inline-flex items-center gap-2">සේවා තෝරන්න <i class="fa-solid fa-arrow-right text-xs"></i></a>
-          <a href="tel:0727777272" class="px-6 py-3.5 text-sm font-bold rounded-full bg-white border border-[var(--line)] inline-flex items-center gap-2"><i class="fa-solid fa-phone text-brand text-xs"></i> 072 777 7272</a>
+          <a href="https://drive.google.com/file/d/1jzwKV_uNVRrJL5UBAboqMsf6CF4ZW5_1/view?usp=drive_link" download="Sound-Permit.pdf" class="px-6 py-3.5 text-sm font-bold rounded-full bg-white border border-[var(--line)] inline-flex items-center gap-2"><i class="fa-solid fa-file-arrow-down text-brand text-xs"></i> Sound Permit PDF</a>
         </div>
       </div>
 
-      <!-- Looping reel: no controls, no player UI -->
-      <div class="relative mx-auto w-full max-w-[280px]">
-        <div class="absolute -inset-3 rounded-[40px] grad opacity-25 blur-2xl"></div>
-        <div class="relative aspect-[9/16] rounded-[32px] overflow-hidden bg-ink border-4 border-white shadow-[0_28px_60px_-20px_rgba(91,91,240,.55)] pointer-events-none select-none">
-          <video id="about-reel" class="w-full h-full object-cover" autoplay muted loop playsinline disablepictureinpicture disableremoteplayback preload="auto" tabindex="-1" aria-hidden="true">
-            <source src="reel.mp4" type="video/mp4">
-            <source src="reel1.mp4" type="video/mp4">
-            <source src="1.mp4" type="video/mp4">
-          </video>
-        </div>
+      <!-- Animated photo post -->
+      <div class="relative mx-auto w-full max-w-[340px] md:max-w-none">
+        <div class="absolute -inset-4 rounded-[44px] grad opacity-20 blur-2xl"></div>
+        <article class="post-float relative bg-white rounded-[28px] border border-[var(--line)] p-3 shadow-[0_28px_60px_-24px_rgba(91,91,240,.5)]">
+          <div class="flex items-center gap-2.5 px-1.5 pb-3 pt-1">
+            <div class="w-9 h-9 rounded-full grad p-[2px]"><div class="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden p-[3px]"><img src="logo.jpg" alt="" class="w-full h-full object-contain" onerror="this.remove()"></div></div>
+            <div class="leading-tight"><p class="text-[13px] font-bold">okitha Sounds</p><p class="text-[11px] text-[var(--muted)]">Passara</p></div>
+            <i class="fa-solid fa-ellipsis ml-auto text-[var(--muted)]"></i>
+          </div>
+          <div class="relative aspect-[4/5] rounded-2xl overflow-hidden grad">
+            <img src="about.jpg" alt="Okitha Catering & Sounds event" class="kenburns absolute inset-0 w-full h-full object-cover" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='1.jpg'}else{this.remove()}">
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
+            <span class="badge b1 glass absolute top-4 left-4 text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-music text-brand"></i>Live Sounds</span>
+            <span class="badge b2 glass absolute top-16 right-4 text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-utensils text-[#F07A2A]"></i>Catering</span>
+            <span class="badge b3 glass absolute bottom-5 left-4 text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-lightbulb text-[#1B9AD6]"></i>Lighting</span>
+          </div>
+          <div class="flex items-center gap-4 px-2 pt-3 text-lg">
+            <button type="button" id="like-btn" aria-label="Like" class="active:scale-90 transition"><i class="fa-regular fa-heart"></i></button>
+            <i class="fa-regular fa-comment"></i><i class="fa-regular fa-paper-plane"></i>
+            <i class="fa-regular fa-bookmark ml-auto"></i>
+          </div>
+          <p class="px-2 pt-2 pb-1 text-[13px] leading-relaxed"><b>okitha.events</b> <span class="text-[var(--muted)]">ඔබේ උත්සවය අපේ වගකීම ✨</span></p>
+        </article>
       </div>
     </div>
   </section>
@@ -184,9 +228,9 @@ body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans','Noto
   <section>
     <div class="mb-4 px-1"><h2 class="text-2xl font-extrabold tracking-tight">පාරිභෝගික අදහස්</h2><p class="text-sm text-[var(--muted)] mt-1">සේවාව ලැබූ අය කියන කතාව</p></div>
     <div class="grid md:grid-cols-3 gap-4">
-      <figure class="card p-5"><div class="text-amber-400 text-xs mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><blockquote class="text-sm leading-relaxed">පස්සර පැත්තේ තියෙන හොදම Catering සහ Sound සේවාව. වෙලාවට වැඩේ කරලා දුන්නා.</blockquote><figcaption class="mt-4 text-xs font-bold">කසුන් පෙරේරා <span class="font-medium text-[var(--muted)]">· පස්සර</span></figcaption></figure>
-      <figure class="card p-5"><div class="text-amber-400 text-xs mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><blockquote class="text-sm leading-relaxed">Sound Quality එක සහ Lighting එක නියමෙටම තිබුනා. Stage Decor එකත් ගොඩක් ලස්සනයි.</blockquote><figcaption class="mt-4 text-xs font-bold">නිමේෂ් මධුශංක <span class="font-medium text-[var(--muted)]">· බදුල්ල</span></figcaption></figure>
-      <figure class="card p-5"><div class="text-amber-400 text-xs mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><blockquote class="text-sm leading-relaxed">Chairs, Tables, Canopies ඔක්කොම පිරිසිදුවට සහ පිළිවෙලට ලෑස්ති කරලා දුන්නා. Very Recommended!</blockquote><figcaption class="mt-4 text-xs font-bold">තරින්දු රත්නායක <span class="font-medium text-[var(--muted)]">· මඩකලපුව පාර</span></figcaption></figure>
+      <figure class="card lift p-5"><div class="text-amber-400 text-xs mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><blockquote class="text-sm leading-relaxed">පස්සර පැත්තේ තියෙන හොදම Catering සහ Sound සේවාව. වෙලාවට වැඩේ කරලා දුන්නා.</blockquote><figcaption class="mt-4 text-xs font-bold">කසුන් පෙරේරා <span class="font-medium text-[var(--muted)]">· පස්සර</span></figcaption></figure>
+      <figure class="card lift p-5"><div class="text-amber-400 text-xs mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><blockquote class="text-sm leading-relaxed">Sound Quality එක සහ Lighting එක නියමෙටම තිබුනා. Stage Decor එකත් ගොඩක් ලස්සනයි.</blockquote><figcaption class="mt-4 text-xs font-bold">නිමේෂ් මධුශංක <span class="font-medium text-[var(--muted)]">· බදුල්ල</span></figcaption></figure>
+      <figure class="card lift p-5"><div class="text-amber-400 text-xs mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><blockquote class="text-sm leading-relaxed">Chairs, Tables, Canopies ඔක්කොම පිරිසිදුවට සහ පිළිවෙලට ලෑස්ති කරලා දුන්නා. Very Recommended!</blockquote><figcaption class="mt-4 text-xs font-bold">තරින්දු රත්නායක <span class="font-medium text-[var(--muted)]">· මඩකලපුව පාර</span></figcaption></figure>
     </div>
   </section>
 </main>
@@ -194,10 +238,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans','Noto
 <!-- Footer -->
 <footer class="mt-16 border-t border-[var(--line)] pt-8 pb-24 px-4 text-center space-y-4">
   <div class="flex justify-center gap-3">
-    <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] hover:text-brand"><i class="fa-brands fa-facebook-f"></i></a>
-    <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] hover:text-pink-500"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://wa.me/94727777272" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] hover:text-red-500"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] transition hover:-translate-y-1 hover:text-brand"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] transition hover:-translate-y-1 hover:text-pink-500"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://wa.me/94716087217" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] transition hover:-translate-y-1 hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white border border-[var(--line)] flex items-center justify-center text-[var(--muted)] transition hover:-translate-y-1 hover:text-red-500"><i class="fa-brands fa-youtube"></i></a>
   </div>
   <div class="text-xs text-[var(--muted)] flex justify-center gap-5"><a href="#" class="hover:underline">Quick Access</a><a href="#" class="hover:underline">Privacy Policy</a><a href="#" class="hover:underline">Terms of Service</a></div>
   <p class="text-xs text-[var(--muted)]">© 2026 Okitha Catering & Sounds. Made with <i class="fa-solid fa-heart text-red-500"></i> by <b class="text-ink">Oshan Dissanayaka</b></p>
@@ -212,7 +256,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans','Noto
 </div>
 
 <!-- WhatsApp FAB -->
-<a href="https://wa.me/94727777272" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" id="wa-fab" class="fixed right-4 bottom-4 z-20 w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_14px_30px_-8px_rgba(16,185,129,.7)] hover:scale-105 transition"><i class="fa-brands fa-whatsapp text-3xl"></i></a>
+<a href="https://wa.me/94716087217" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" id="wa-fab" class="fixed right-4 bottom-4 z-20 w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_14px_30px_-8px_rgba(16,185,129,.7)] hover:scale-105 transition"><span class="absolute inset-0 rounded-full bg-emerald-400 opacity-40 animate-ping"></span><i class="fa-brands fa-whatsapp text-3xl relative"></i></a>
 
 <!-- Cart modal -->
 <div id="cart-modal" class="fixed inset-0 z-50 bg-ink/30 backdrop-blur-sm flex items-end sm:items-center justify-center hidden opacity-0 transition-opacity duration-300 sm:p-4">
@@ -234,10 +278,12 @@ body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans','Noto
       </div>
     </div>
     <div class="p-5 border-t border-[var(--line)]">
-      <button onclick="sendToWhatsApp()" class="w-full py-4 rounded-full bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-[0_12px_28px_-10px_rgba(16,185,129,.7)] active:scale-[.98] transition"><i class="fa-brands fa-whatsapp text-lg"></i> PDF සමඟ WhatsApp යවන්න</button>
+      <button id="send-btn" onclick="sendToWhatsApp()" class="w-full py-4 rounded-full bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-[0_12px_28px_-10px_rgba(16,185,129,.7)] active:scale-[.98] transition"><i class="fa-brands fa-whatsapp text-lg"></i> PDF සමඟ WhatsApp යවන්න</button>
     </div>
   </div>
 </div>
+
+<div id="toast" class="glass rounded-full pl-3 pr-5 py-3 shadow-[0_16px_40px_-12px_rgba(18,20,43,.35)] flex items-center gap-3"><span class="w-9 h-9 rounded-full grad text-white flex items-center justify-center"><i class="fa-solid fa-check"></i></span><div><p id="toast-t" class="text-sm font-extrabold">ස්තූතියි! Thank you</p><p id="toast-s" class="text-[11px] text-[var(--muted)]">PDF එක download වුණා. WhatsApp එකට අමුණා යවන්න.</p></div></div>
 
 <script>
 // Loader
@@ -248,7 +294,7 @@ const partners=[['client1.jpg','Passara Club'],['client2.jpg','Uva Events'],['cl
 document.getElementById('marquee').innerHTML=[...partners,...partners,...partners,...partners].map(([src,n])=>`<div class="h-12 min-w-[140px] mx-2 px-5 rounded-2xl bg-[var(--bg)] border border-[var(--line)] flex items-center justify-center"><img src="${src}" alt="${n}" class="h-7 max-w-[100px] object-contain" onerror="this.outerHTML='<span class=\\'text-xs font-bold text-[var(--muted)]\\'>${n}</span>'"></div>`).join('');
 
 // Reels
-const reels=[['reel1.mp4','Sound Setup','fa-compact-disc'],['reel2.mp4','Catering Live','fa-utensils'],['reel3.mp4','DJ Night','fa-bolt'],['reel4.mp4','Stage & Canopies','fa-campground']];
+const reels=[['reel.mp4','Sound Setup','fa-compact-disc'],['reel2.mp4','Catering Live','fa-utensils'],['reel3.mp4','DJ Night','fa-bolt'],['reel4.mp4','Stage & Canopies','fa-campground']];
 document.getElementById('reels-container').innerHTML=reels.map(([f,t,i],n)=>`<div class="relative shrink-0 w-[220px] aspect-[9/16] rounded-3xl overflow-hidden bg-ink border border-[var(--line)] shadow-[0_16px_36px_-16px_rgba(18,20,43,.5)]"><video class="w-full h-full object-cover" controls playsinline preload="metadata"><source src="${f}" type="video/mp4"><source src="1.mp4" type="video/mp4"></video><span class="absolute top-3 left-3 glass text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5"><i class="fa-solid ${i} text-brand"></i>${t}</span></div>`).join('');
 function scrollReels(a){document.getElementById('reels-container').scrollBy({left:a,behavior:'smooth'})}
 
@@ -264,15 +310,16 @@ const catalogItems=[
 {id:8,category:'catering',name:'Banquet Tables',icon:'fa-table',desc:'මේස (Tables)'},
 {id:9,category:'catering',name:'Plates & Cutlery Sets',icon:'fa-utensils',desc:'ප්ලේට් සහ උපකරණ කට්ටල'},
 {id:10,category:'catering',name:'Buffet Warmers',icon:'fa-bowl-food',desc:'බුෆේ සෙට් (Buffet Sets)'}];
+const catEN={sounds:'Sounds & DJ',decor:'Stage & Decor',catering:'Catering Equipment',lighting:'Lighting & Canopies'};
 const tints={sounds:'#EEEDFF|#5B5BF0',decor:'#FFEAF3|#E0488A',catering:'#FFF1E6|#F07A2A',lighting:'#E6F7FF|#1B9AD6'};
 let cart={},activeCat='all';
 
-function renderItems(){
+function renderItems(anim){
   const list=activeCat==='all'?catalogItems:catalogItems.filter(i=>i.category===activeCat);
-  document.getElementById('items-grid').innerHTML=list.map(it=>{
+  document.getElementById('items-grid').innerHTML=list.map((it,idx)=>{
     const q=cart[it.id]?cart[it.id].qty:0,[bg,fg]=tints[it.category].split('|');
-    return `<div class="card p-5 flex flex-col justify-between ${q?'ring-2 ring-brand/40':''}">
-      <div class="flex gap-4"><div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style="background:${bg};color:${fg}"><i class="fa-solid ${it.icon}"></i></div>
+    return `<div class="card lift ${anim?'pop':''} p-5 flex flex-col justify-between ${q?'ring-2 ring-brand/40':''}" style="--i:${idx}">
+      <div class="flex gap-4"><div class="ic w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style="background:${bg};color:${fg}"><i class="fa-solid ${it.icon}"></i></div>
       <div><h4 class="font-bold text-[15px] leading-snug">${it.name}</h4><p class="text-xs text-[var(--muted)] mt-1 leading-relaxed">${it.desc}</p></div></div>
       <div class="mt-5">${q?`<div class="flex items-center justify-between rounded-full bg-[var(--bg)] p-1"><button aria-label="Decrease" onclick="updateQty(${it.id},-1)" class="w-9 h-9 rounded-full bg-white border border-[var(--line)] font-bold active:scale-95">−</button><span class="text-sm font-extrabold">${q}</span><button aria-label="Increase" onclick="updateQty(${it.id},1)" class="w-9 h-9 rounded-full grad text-white font-bold active:scale-95">+</button></div>`
       :`<button onclick="updateQty(${it.id},1)" class="w-full py-2.5 rounded-full border border-[var(--line)] bg-white text-sm font-bold hover:border-brand hover:text-brand transition flex items-center justify-center gap-2"><i class="fa-solid fa-plus text-[10px]"></i>තෝරන්න</button>`}</div></div>`}).join('');
@@ -281,7 +328,7 @@ document.getElementById('category-tabs').addEventListener('click',e=>{
   const b=e.target.closest('[data-cat]');if(!b)return;
   activeCat=b.dataset.cat;
   document.querySelectorAll('#category-tabs .chip').forEach(c=>c.classList.toggle('on',c===b));
-  renderItems();
+  renderItems(true);
 });
 function updateQty(id,d){
   const item=catalogItems.find(i=>i.id===id);
@@ -293,7 +340,7 @@ function updateUI(){
   renderItems();
   const total=Object.values(cart).reduce((s,i)=>s+i.qty,0);
   const badge=document.getElementById('cart-badge');
-  badge.textContent=total;badge.classList.toggle('hidden',!total);badge.classList.toggle('inline-flex',!!total);
+  if(badge.textContent!=String(total)){badge.classList.remove('bump');void badge.offsetWidth;badge.classList.add('bump')}badge.textContent=total;badge.classList.toggle('hidden',!total);badge.classList.toggle('inline-flex',!!total);
   document.getElementById('floating-cart-bar').classList.toggle('hidden',!total);
   document.getElementById('wa-fab').classList.toggle('hidden',!!total);
   document.getElementById('cart-summary-text').textContent=`${Object.keys(cart).length} සේවා · ${total} ඒකක`;
@@ -309,32 +356,105 @@ function toggleCartModal(){
   if(m.classList.contains('hidden')){m.classList.remove('hidden');setTimeout(()=>{m.classList.remove('opacity-0');c.classList.remove('translate-y-10')},10)}
   else{m.classList.add('opacity-0');c.classList.add('translate-y-10');setTimeout(()=>m.classList.add('hidden'),300)}
 }
-function sendToWhatsApp(){
+async function sendToWhatsApp(){
   const name=document.getElementById('cust-name').value.trim(),phone=document.getElementById('cust-phone').value.trim(),date=document.getElementById('event-date').value,location=document.getElementById('event-location').value.trim(),notes=document.getElementById('event-notes').value.trim();
   if(!name||!phone||!date){alert('කරුණාකර ඔබේ නම, දුරකථන අංකය සහ උත්සව දිනය ඇතුළත් කරන්න.');return}
   if(!Object.keys(cart).length){alert('කරුණාකර අවම වශයෙන් එක් සේවාවක් හෝ තෝරන්න.');return}
-  const {jsPDF}=window.jspdf,doc=new jsPDF();
-  doc.setFontSize(18);doc.text("Okitha Catering & Sounds - Passara",14,20);
-  doc.setFontSize(12);doc.text("Event Booking Request Summary",14,28);doc.text(`Date: ${new Date().toLocaleDateString()}`,14,34);
-  doc.line(14,38,196,38);doc.setFontSize(10);
-  doc.text(`Customer Name: ${name}`,14,46);doc.text(`Phone Number: ${phone}`,14,52);doc.text(`Event Date: ${date}`,14,58);doc.text(`Location: ${location||'N/A'}`,14,64);
-  if(notes)doc.text(`Notes: ${notes}`,14,70);
-  doc.line(14,76,196,76);doc.text("Selected Services & Equipment:",14,84);
-  let y=92;Object.values(cart).forEach((e,i)=>{doc.text(`${i+1}. ${e.item.name} - Quantity: ${e.qty}`,20,y);y+=8});
-  doc.line(14,y+4,196,y+4);doc.setFontSize(9);doc.text("Generated via Okitha Web App | Developer: Oshan Dissanayaka",14,y+12);
-  doc.save(`Okitha_Booking_${name.replace(/\s+/g,'_')}.pdf`);
-  let items='';Object.values(cart).forEach((e,i)=>{items+=`%0A  ${i+1}. *${e.item.name}* (Qty: ${e.qty})`});
-  const msg=`*-- OKITHA EVENTS BOOKING REQUEST --*%0A%0A*නම:* ${name}%0A*දුරකථන:* ${phone}%0A*උත්සව දිනය:* ${date}%0A*ස්ථානය:* ${location||'සඳහන් කර නැත'}%0A*සටහන්:* ${notes||'නැත'}%0A%0A*තෝරාගත් සේවාවන්:*${items}%0A%0A_PDF සාරාංශ පත්‍රිකාව Download විය. කරුණාකර එයද මෙහි Attach කර යවන්න._`;
-  window.open(`https://wa.me/94727777272?text=${msg}`,'_blank');
+  let items='';Object.values(cart).forEach((e,i)=>{items+=`\n  ${i+1}. *${e.item.name}* (Qty: ${e.qty})`});
+  const text=`*-- OKITHA EVENTS BOOKING REQUEST --*\n\n*නම:* ${name}\n*දුරකථන:* ${phone}\n*උත්සව දිනය:* ${date}\n*ස්ථානය:* ${location||'සඳහන් කර නැත'}\n*සටහන්:* ${notes||'නැත'}\n\n*තෝරාගත් සේවාවන්:*${items}\n\n_PDF සාරාංශ පත්‍රිකාව Download විය. කරුණාකර එයද මෙහි Attach කර යවන්න._`;
+  const url='https://wa.me/94716087217?text='+encodeURIComponent(text);
+  const btn=document.getElementById('send-btn');btn.disabled=true;btn.classList.add('opacity-70');
+  const w=window.open('about:blank','_blank');   // open synchronously so the popup is not blocked
+  let ok=true;
+  try{await buildPDF({name,phone,date,location,notes})}catch(err){ok=false;console.error('PDF error:',err)}
+  if(w)w.location.href=url;else window.location.href=url;
+  btn.disabled=false;btn.classList.remove('opacity-70');
+  document.getElementById('toast-t').textContent=ok?'ස්තූතියි! Thank you':'WhatsApp විවෘත වුණා';
+  document.getElementById('toast-s').textContent=ok?'PDF එක download වුණා. WhatsApp එකට අමුණා යවන්න.':'PDF හදන්න බැරි වුණා, නමුත් Booking විස්තර WhatsApp එකේ තියෙනවා.';
+  const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5000);
 }
-renderItems();
 
-// About reel: silent loop, play only while visible
-const aboutReel=document.getElementById('about-reel');
-if(aboutReel){
-  aboutReel.muted=true;
-  new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?aboutReel.play().catch(()=>{}):aboutReel.pause()),{threshold:.25}).observe(aboutReel);
+// ---------- Professional PDF ----------
+function loadLogo(){
+  return new Promise(res=>{
+    const img=new Image();
+    img.onload=()=>{try{const k=Math.min(1,700/img.width),w=Math.round(img.width*k),h=Math.round(img.height*k);
+      const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');
+      x.fillStyle='#fff';x.fillRect(0,0,w,h);x.drawImage(img,0,0,w,h);
+      res({data:c.toDataURL('image/jpeg',.92),ratio:w/h})}catch(e){res(null)}};
+    img.onerror=()=>res(null);img.src='1.jpg';
+  });
 }
+async function buildPDF({name,phone,date,location,notes}){
+  const {jsPDF}=window.jspdf,doc=new jsPDF({unit:'mm',format:'a4'}),W=210,M=14;
+  const INK=[18,20,43],BRAND=[91,91,240],MUTED=[107,112,136],LINE=[232,234,243],SOFT=[246,247,251];
+  const logo=await loadLogo();
+  // Header band
+  doc.setFillColor(...BRAND);doc.rect(0,0,W,42,'F');
+  doc.setFillColor(168,85,247);doc.rect(W*0.55,0,W*0.3,42,'F');doc.setFillColor(255,122,89);doc.rect(W*0.85,0,W*0.15,42,'F');
+  let tx=M+32;
+  if(logo){const h=22,w=Math.min(h*logo.ratio,56);const hh=w/logo.ratio;
+    doc.setFillColor(255,255,255);doc.roundedRect(M,21-(hh+4)/2,w+4,hh+4,3,3,'F');
+    doc.addImage(logo.data,'JPEG',M+2,21-hh/2,w,hh);tx=M+w+10}
+  else{doc.setFillColor(255,255,255);doc.roundedRect(M,8,26,26,5,5,'F');doc.setTextColor(...BRAND);doc.setFont('helvetica','bold');doc.setFontSize(22);doc.text('O',M+13,25,{align:'center'})}
+  doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Okitha Catering & Sounds',tx,19);
+  doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.text('Passara  |  072 777 7272  |  Complete Event Services',tx,26);
+  doc.setFontSize(8.5);doc.text('EVENT BOOKING REQUEST',tx,33);
+  // Ref + date
+  const ref='OKT-'+new Date().toISOString().slice(2,10).replace(/-/g,'')+'-'+Math.floor(1000+Math.random()*9000);
+  doc.setTextColor(...INK);doc.setFont('helvetica','bold');doc.setFontSize(11);doc.text('Booking Summary',M,54);
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(...MUTED);
+  doc.text('Ref: '+ref,W-M,52,{align:'right'});doc.text('Issued: '+new Date().toLocaleDateString('en-GB'),W-M,57,{align:'right'});
+  // Customer card
+  doc.setFillColor(...SOFT);doc.setDrawColor(...LINE);doc.roundedRect(M,62,W-2*M,34,4,4,'FD');
+  const f=(l,v,x,y)=>{doc.setFontSize(8);doc.setTextColor(...MUTED);doc.setFont('helvetica','normal');doc.text(l.toUpperCase(),x,y);doc.setFontSize(10.5);doc.setTextColor(...INK);doc.setFont('helvetica','bold');doc.text(String(v||'N/A'),x,y+6)};
+  f('Customer',name,M+6,71);f('Phone',phone,W/2+4,71);f('Event date',date,M+6,86);f('Location',location,W/2+4,86);
+  // Table
+  const rows=Object.values(cart).map((e,i)=>[i+1,e.item.name,catEN[e.item.category],e.qty]);
+  doc.autoTable({startY:104,head:[['#','Service / Equipment','Category','Qty']],body:rows,theme:'plain',margin:{left:M,right:M},
+    styles:{font:'helvetica',fontSize:10,textColor:INK,cellPadding:{top:4.5,bottom:4.5,left:4,right:4},lineColor:LINE,lineWidth:{bottom:.3}},
+    headStyles:{fillColor:INK,textColor:255,fontStyle:'bold',fontSize:9,lineWidth:0},
+    alternateRowStyles:{fillColor:SOFT},
+    columnStyles:{0:{cellWidth:12,halign:'center'},1:{fontStyle:'bold'},2:{textColor:MUTED},3:{cellWidth:20,halign:'center',fontStyle:'bold'}},
+    didParseCell:d=>{if(d.section==='head'&&d.column.index===3)d.cell.styles.halign='center';if(d.section==='head'&&d.column.index===0)d.cell.styles.halign='center'}});
+  let y=doc.lastAutoTable.finalY+6;
+  const total=Object.values(cart).reduce((s,i)=>s+i.qty,0);
+  doc.setFillColor(...BRAND);doc.roundedRect(W-M-62,y,62,11,3,3,'F');
+  doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(9.5);doc.text(`Total items: ${total}`,W-M-31,y+7.2,{align:'center'});
+  y+=20;
+  if(notes){doc.setTextColor(...INK);doc.setFont('helvetica','bold');doc.setFontSize(10);doc.text('Additional notes',M,y);
+    doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.setTextColor(...MUTED);const L=doc.splitTextToSize(notes,W-2*M);doc.text(L,M,y+6);y+=8+L.length*5}
+  // Footer
+  const H=297;doc.setDrawColor(...LINE);doc.line(M,H-26,W-M,H-26);
+  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(...INK);doc.text('Thank you for choosing Okitha Catering & Sounds!',M,H-18);
+  doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(...MUTED);
+  doc.text('This is a booking request summary, not a confirmed invoice. Our team will contact you to confirm availability and pricing.',M,H-13);
+  doc.text('Web app by Oshan Dissanayaka',M,H-8);doc.text('wa.me/94716087217',W-M,H-8,{align:'right'});
+  doc.save(`Okitha_Booking_${(name||'Customer').replace(/\s+/g,'_')}.pdf`);
+}
+// Like button
+document.getElementById('like-btn').addEventListener('click',e=>{const b=e.currentTarget;b.classList.toggle('liked');b.querySelector('i').className=b.classList.contains('liked')?'fa-solid fa-heart':'fa-regular fa-heart'});
+renderItems();
+// ---------- Scroll reveal ----------
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;const el=e.target;io.unobserve(el);el.classList.add('in');
+  const d=parseInt(el.style.getPropertyValue('--d'))||0;
+  setTimeout(()=>el.classList.remove('rv','in'),d+900);
+}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+function reveal(sel,step=90,base=0){document.querySelectorAll(sel).forEach((el,i)=>{el.classList.add('rv');el.style.setProperty('--d',(base+i*step)+'ms');io.observe(el)})}
+reveal('#top > section:first-of-type .grid > div:first-child > *',110,950);
+reveal('#top > section:first-of-type ol',0,1250);
+reveal('#top > section:first-of-type ol > li',120,1400);
+reveal('#top > section:nth-of-type(2) > *',100);
+reveal('#about .grid > div:first-child > *',90);
+reveal('#about ul > li',90);
+reveal('#about .grid > div:last-child',200);
+reveal('#builder > div:first-child',0);reveal('#category-tabs',100);reveal('#items-grid > *',70);
+reveal('#top > section:nth-of-type(5) > *',90);
+reveal('#top > section:nth-of-type(6) .grid > figure',120);reveal('#top > section:nth-of-type(6) > div:first-child',0);
+reveal('footer > *',100);
+
+
 </script>
 </body>
 </html>
